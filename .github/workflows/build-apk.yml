@@ -35,8 +35,10 @@ jobs:
           unzip -q NovaHD_TV_Project.zip
 
       - name: Build APK
-        working-directory: ./NovaHD_TV
-        run: gradle --no-daemon assembleDebug
+  working-directory: ./NovaHD_TV
+  run: |
+    echo "android.useAndroidX=true" >> gradle.properties
+    gradle --no-daemon assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
